@@ -10,6 +10,12 @@ body {
   background-size:contain;
   backdrop-filter: blur(15px);
 }
+/*parte superior de la pagina*/
+header {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to bottom, #012295 0%, #012295 33.33%, #FFFFFF 40.40%, #FFFFFF 66.66%, #e82939 75.75%, #e82939 100%);  
+}
 /*cambio de texto de debajo de MATUTINO */
 .lolo{ 
   width: 800px;
@@ -111,12 +117,6 @@ h3{
     font-size: small;
   }
 } 
-/*parte superior de la pagina*/
-header {
-  display: flex;
-  align-items: center;
-  background: linear-gradient(to bottom, #012295 0%, #012295 33.33%, #FFFFFF 40.40%, #FFFFFF 66.66%, #e82939 75.75%, #e82939 100%);  
-}
 /*tamaño de header*/
 .logo img {
   width: 155px;
@@ -157,11 +157,24 @@ ul, ol{
   flex-direction: column;
   cursor: pointer;
 }
+/*movil*/
+.menu li a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+.menu-icon div {
+  width: 25px;
+  height: 3px;
+  background-color: rgb(0, 0, 0);
+  margin: 4px;
+  margin-left: 500%;
+}
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
   header{
-    margin-bottom: 10%;
+    margin-bottom: 0%;
   }
 
   .menu {
@@ -214,6 +227,9 @@ ul, ol{
   position: absolute;
   min-width: 140px;
 }
+  .nav > li{
+    float: left;
+  }
 
 /* hace aparece los ul ocultos*/
 .nav li:hover > ul{
@@ -240,7 +256,7 @@ ul, ol{
 }
 
 /*pie de pagina*/
-.footer-container {
+.footer-container {   
   margin: 0 auto;
   padding: 10px;
   display: flex;
@@ -254,6 +270,13 @@ ul, ol{
   bottom: 0;
   font-family: 'Times New Roman', Times, serif;
 }
+
+.social-media img,
+.contact-us img,
+.find-us img {
+  display: block;
+} 
+
 
 @media screen and (max-width: 768px) {
   .footer-container {
@@ -273,6 +296,10 @@ ul, ol{
 .icon-container {
   display: flex;
   align-items: center;
+}
+
+.icon-container img {
+  margin-right: 10px; 
 }
 
 @media screen and (max-width: 768px) {
@@ -299,25 +326,19 @@ ul, ol{
   opacity: 0;
   visibility: hidden;
   z-index: 2;
-} 
+}
 
 @media screen and (max-width: 768px){
   #btn-menu:checked ~ .container-menu{
   opacity: 1;
   visibility: visible;
   }
-}
-
+} 
 li{
   font-family: serif;
 }
 
-
-/*movil*/
-
-  .nav > li{
-    float: left;
-  }
+/*toda esta seccion es de celular */
 .cont-menu{
   width: 1000%;
   max-width: 350px;
