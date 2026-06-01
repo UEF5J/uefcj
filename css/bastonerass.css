@@ -332,8 +332,8 @@ h1 {
   li{
     font-family: serif;
   }
-
-  .cont-menu{
+/*movil*/
+.cont-menu{
   width: 1000%;
   max-width: 350px;
   background: #ffffff;

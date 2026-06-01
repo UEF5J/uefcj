@@ -337,3 +337,50 @@ h1 {
 li{
     font-family: serif;
   }
+
+/*movil*/
+
+  .nav > li{
+    float: left;
+  }
+.cont-menu{
+  width: 1000%;
+  max-width: 350px;
+  background: #ffffff;
+  height: 100vh;
+  position: relative;
+  transition: all 500ms ease;
+  transform: translateX(-100%);
+}
+
+#btn-menu:checked ~ .container-menu .cont-menu{
+  transform: translateX(0%);
+}
+
+.cont-menu nav{
+  transform: translateY(15%);
+}
+
+.cont-menu nav a{
+  display: block;
+  text-decoration: none;
+  padding: 10px;
+  font-size: 25px;
+  color: #000000;
+  border-left: 5px solid transparent;
+  transition: all 400ms ease;
+}
+
+.cont-menu nav a:hover{
+  border-left: 5px solid #000000;
+  background: #7e7e7e;
+}
+
+.cont-menu label{
+  position: absolute;
+  right: 5px;
+  top: 10px;
+  color: #000000;
+  cursor: pointer;
+  font-size: 18px;
+}
