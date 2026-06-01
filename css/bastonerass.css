@@ -3,7 +3,7 @@ html{
 }
 
 body {
-    margin: 0;
+    margin: 0; 
     padding: 0;
     font-family: Arial, sans-serif;
     background-color:  #f2f4f3;
@@ -40,10 +40,12 @@ body {
   }
   
   .menu {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
+      list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1000;
   }
   
   .menu li {
@@ -111,7 +113,7 @@ body {
     background-color: #fff;
     color: #000;
     text-decoration: none;
-    padding: 10px 10px;
+    padding: 10px 25px;
     display: block;
     transition: .3s;
   }
@@ -157,64 +159,38 @@ body {
     background-color: #00196b;
   }
 
-/*Encabezado*/
-.equipo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /*height: 50vh;*/
-    flex-direction: column;
-}
-
-.presentaciones {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /*height: 25vh;*/
-  flex-direction: column;
-}
-
-.eventos {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /*height: 25vh;*/
-  flex-direction: column;
-}
 
 h1 {
-  padding: 7px 7px;
-  background-color: #d1bc609a;
-  border-radius: 20px;
+ max-width: 500px;
+ margin: 0 auto;
+ border-radius: 10px;
+ color: rgb(14, 13, 13);
+ font-family: serif;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ background-color: #717ea859;
+ backdrop-filter: blur(10px); /* Desenfoque estilo vidrio moderno */
+ border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .players {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  background-color: #59b86993;
-  border-radius: 50px;
+  display: flex;
+  justify-content: center; /* Centra los cuadros en la pantalla */
+  gap: 25px;              /* Espacio de separación entre cada cuadro */
+  flex-wrap: wrap;        /* Si la pantalla es pequeña (celular), los cuadros se acomodan abajo automáticamente */
+  padding: 20px;
 }
 
-.player {
-    text-align: center;
-    margin: 15px;
-}
 
-.presentacion{
-    text-align: center;
-    margin: 15px;
-}
-
-.evento{
-    text-align: center;
-    margin: 15px;
-}
-
-.player-img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 15px;
+.presentacion{   
+  background: rgba(255, 255, 255, 0.5); /* Blanco muy difuminado */
+    backdrop-filter: blur(10px); /* Desenfoque estilo vidrio moderno */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;          /* Esquinas redondeadas modernas */
+    width: 280px;                 /* Ancho fijo para que todos midan igual */
+    overflow: hidden;             /* Corta la imagen para que respete las esquinas redondeadas */
+    text-align: center;           /* Centra el texto de abajo */
+    /* Sombra suave para dar profundidad (efecto flotante) */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); 
 }
 
 .presentacion-img {
@@ -224,62 +200,27 @@ h1 {
   border-radius: 15px;
 }
 
-.evento-img {
-  width: 300px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 15px;
-}
 
-.player-name {
-    font-weight: bold;
-}
-
-.bienvenida{
-  max-width: 1000px;
-  margin: 0 auto;
-  border-radius: 10px;
-  font-size: 38px;
-  font-weight: bold;
-  text-align: center;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-/*.pagina {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 25px;
+.player-name {  
+   font-family: 'Open Sans', 'Arial', sans-serif; /* Tipografía limpia y seria */
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a2530;               /* Azul marino oscuro para un look formal */
+    padding: 15px 10px;           /* Espaciado interno para que el texto respire */
     margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f0f0f0;
-}*/
-
-/*  .container {
-    display: flex;
-    width: 100%;
-    max-width: 1200px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    margin-top: 20px;
-    padding: 20px;
-  }*/
-
-  .container {
+}
+.container{
   max-width: 1000px;
   margin: 0 auto;
 }
-
 .image-text-container {
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   padding: 7px 7px;
-  background-color: #43a2b959;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px); /* Desenfoque estilo vidrio moderno */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   border-radius: 20px;
 }
 
@@ -287,8 +228,8 @@ h1 {
   margin-left: 30px;
   margin-right: 30px;
   color: #000000;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 24px;
+  font-family: sans-serif;
+  font-size: 20px;
 }
 
 .animated-image {
@@ -325,54 +266,19 @@ h1 {
   }
 }
 
-.left, .right {
-    flex: 1;
-    padding: 20px;
-}
-
-.left {
-    overflow-y: auto;
-    line-height: 1.6;
-    text-align: justify;
-    padding: 50px 240px;
-}
-
-.right {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.right h2 {
-    margin-bottom: 20px;
-}
-
-.right img {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-  /*Pagina*/
-  .footer-container {
-    /*max-width: 1200px;*/
-    margin: 125px auto;
-    padding: 20px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  
-  .footer-container h2 {
-    color: #000000;
-  }
-  
-  .social-media img,
-  .contact-us img,
-  .find-us img {
-    display: block;
+.footer-container {   
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #000000;
+  font-size: 110%;
+  text-align: center;
+  width: 100%;
+  height: 25%;
+  bottom: 0;
+  font-family: 'Times New Roman', Times, serif;
   }
   
   @media screen and (max-width: 768px) {
@@ -392,23 +298,6 @@ h1 {
     display: flex;
     align-items: center;
   }
-  
-  .icon-container img {
-    margin-right: 10px; 
-  }
-  .icon-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .icon-container img {
-    margin-right: 10px; 
-  }
-  
-  .icon-container span {
-    color: rgb(0, 0, 0);
-  }
-
   @media screen and (max-width: 768px){
     .icon-container img{
       width: 50px;
@@ -416,27 +305,10 @@ h1 {
     }
   }
 
-  footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-  
-    display: flexbox;
-    width: 100%;
-    height: 25%;
-    bottom: 0;
-  }
-
   #btn-menu{
     display: none;
     overflow-y: hidden;
   }
-  
-  .icon-equis{
-    left: 330px;
-  }
-  
   .container-menu{
     position: absolute;
     background: linear-gradient(to bottom, #012295 0%, #012295 33.33%, #FFFFFF 40.40%, #FFFFFF 66.66%, #e82939 75.75%, #e82939 100%);  
@@ -457,45 +329,6 @@ h1 {
     visibility: visible;
     }
   }
-  
-  .cont-menu{
-    width: 1000%;
-    max-width: 350px;
-    background: #ffffff;
-    height: 100vh;
-    position: relative;
-    transition: all 500ms ease;
-    transform: translateX(-100%);
-  }
-  
-  #btn-menu:checked ~ .container-menu .cont-menu{
-    transform: translateX(0%);
-  }
-  
-  .cont-menu nav{
-    transform: translateY(15%);
-  }
-  
-  .cont-menu nav a{
-    display: block;
-    text-decoration: none;
-    padding: 10px;
-    font-size: 25px;
-    color: #000000;
-    border-left: 5px solid transparent;
-    transition: all 400ms ease;
-  }
-  
-  .cont-menu nav a:hover{
-    border-left: 5px solid #000000;
-    background: #7e7e7e;
-  }
-  
-  .cont-menu label{
-    position: absolute;
-    right: 5px;
-    top: 10px;
-    color: #000000;
-    cursor: pointer;
-    font-size: 18px;
+  li{
+    font-family: serif;
   }

@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banda Rítmica Institucional</title>
+    <title>Banda de Paz</title>
     <link rel="stylesheet" href="css/bandas.css">
     <link rel="icon" href="images/index/fondo1.ico">
+    <script src="animaciones.js"></script>
 </head>
 <body>
   <header>
@@ -51,7 +52,7 @@
    </header>
   
     <br> <br> 
-    <div class="bienvenida"><center>Banda Rítmica Institucional</center></div>
+    <h1><center>Banda de Paz</center></h1>
     <br> 
 
     <div class="container">
@@ -59,69 +60,57 @@
           <div class="text">
             <p>La banda del Colegio Cinco de Junio es símbolo de disciplina, pasión y orgullo institucional. Conformada por talentosos estudiantes, representa con honor a la institución en actos cívicos, culturales y desfiles, llevando siempre en alto el nombre del colegio a través de su música y espíritu juvenil.</p> 
           </div>
-          <br><img src="images/banda/banda1.jpeg" alt="Jugador 1" class="animated-image">
+          <br><img src="images/banda/background.jpg" alt="Jugador 1" class="animated-image">
       </div>
   </div>
-
-  <div class="container">
-    <h1>Grupo</h1>
     <br>
-      <div class="equipo">
           <div class="players">
-              <div class="player">
-                  <img src="images/banda/bombo-jeremy-altamirano.jpg" alt="Jugador 1" class="player-img">
-                  <div class="player-name">Jeremy Altamirano</div>
-                  <div class="player-position">Bombo</div>
+              <div class="presentacion">
+                  <img src="images/banda/b1.jpg" alt="Jugador 1" class="player-img">
               </div>
-              <div class="player">
-                  <img src="images/banda/tambor-daniela-naranjo.jpg" alt="Jugador 2" class="player-img">
-                  <div class="player-name">Daniela Naranjo</div>
-                  <div class="player-position">Tambor</div>
+              <div class="presentacion">
+                  <img src="images/banda/b2.jpg" alt="Jugador 2" class="player-img">
               </div>
-              <div class="player">
-                  <img src="images/banda/lirista-genesis-mayorga.jpg" alt="Jugador 3" class="player-img">
-                  <div class="player-name">Genesis Mayorga</div>
-                  <div class="player-position">Lira</div>
+              <div class="presentacion">
+                  <img src="images/banda/b3.jpg" alt="Jugador 3" class="player-img">
               </div>
-              <div class="player">
-                  <img src="images/banda/lirista-kenneth-rivera.jpg" alt="Jugador 4" class="player-img">
-                  <div class="player-name">Kenneth Rivera</div>
-                  <div class="player-position">Lira</div>
-              </div>
-              <div class="player">
-                  <img src="images/banda/lirista-shirley-jimenez.jpg" alt="Jugador 5" class="player-img">
-                  <div class="player-name">Shirley Jimenez</div>
-                  <div class="player-position">Lira</div>
-              </div>
-              <div class="player">
-                  <img src="images/banda/miembrobanda-stalin-bunci.jpg" alt="Jugador 6" class="player-img">
-                  <div class="player-name">Stalin Bunci</div>
-                  <div class="player-position"></div>
-              </div>
-              <center></center>
-              <div class="player">
-                  <img src="images/banda/nada-sara-tipan.jpg" alt="Jugador 6" class="player-img">
-                  <div class="player-name">Sara Tipan</div>
-                  <div class="player-position"></div>
+              <div class="presentacion">
+                  <img src="images/banda/b4.jpg" alt="Jugador 4" class="player-img">
               </div>
           </div>
-      </div>
   </div>
 
 <br>
-
   <div class="container">
-      <h3>Galería</h3>
       <br>
-      <div class="gallery">
-          <img src="images/banda/gale1.jpg" alt="Imagen 1">
-          <img src="images/banda/gale2.jpg" alt="Imagen 2">
-          <img src="images/banda/gale3.jpg" alt="Imagen 3">
-          <img src="images/banda/gale4.jpg" alt="Imagen 4">
-          <img src="images/banda/gale5.jpg" alt="Imagen 5">
-          <img src="images/banda/gale6.jpg" alt="Imagen 6">
+      <h1>Galería</h1>
+      <br>
+      <div class="players"> 
+        <div class="presentacion">
+          <img src="images/banda/gale1.jpg" alt="Imagen 1" class="presentacion-img" onclick="abrirModal(this)">
+        </div>  
+        <div class="presentacion">
+          <img src="images/banda/gale2.jpg" alt="Imagen 2" class="presentacion-img" onclick="abrirModal(this)">
+        </div>  
+        <div class="presentacion">
+          <img src="images/banda/gale3.jpg" alt="Imagen 3" class="presentacion-img" onclick="abrirModal(this)">
+        </div>
+        <div class="presentacion">
+          <img src="images/banda/b5.jpg" alt="Imagen 4" class="presentacion-img" onclick="abrirModal(this)">
+        </div>  
+        <div class="presentacion">
+          <img src="images/banda/b6.jpg" alt="Imagen 5" class="presentacion-img" onclick="abrirModal(this)">
+        </div>  
+        <div class="presentacion">
+          <img src="images/banda/gale6.jpg" alt="Imagen 6" class="presentacion-img" onclick="abrirModal(this)">
+        </div> 
       </div>
   </div>
+
+  <div id="miModal" class="modal" onclick="cerrarModal()">
+    <span class="cerrar">&times;</span>
+    <img class="modal-contenido" id="imgGrande">
+</div>
 
   <br><br><br>
 
@@ -147,7 +136,7 @@
     <br><br><br><br><br>
     <div class="contact-us">
         <h2>Contactanos</h2>
-        <br>
+        <br> 
         <div class="icon-container">
           <img src="images/index/g.png" alt="Imagen de Contacto" width="50" height="50">
           <span>17h00910@gmail.com</span>
@@ -155,12 +144,12 @@
       </div>
       <br><br><br><br><br>
       <div class="find-us">
-        <h2>Encuentranos</h2>
-        <div class="icon-container">
-          <img src="images/index/ubi.png" alt="Imagen de Encuentranos" width="50" height="50">
-          <span>Pinllopata OE1-389 <br> Moraspungo (El Calzado)</span>
-        </div>
-      </div>
+              <h2>Encuentranos</h2>
+              <div class="icon-container">
+                <a href="https://maps.app.goo.gl/eGSbK49zK6cfuhFJ6"><img src="images/index/ubi.png" alt="Imagen de Encuentranos" width="50" height="50"></a> 
+                <span>Pinllopata OE1-389 <br> Moraspungo (El Calzado)</span>
+              </div>
+       </div>
     </div>
 </footer> 
 </body>
