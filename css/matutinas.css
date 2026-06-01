@@ -157,6 +157,20 @@ ul, ol{
   flex-direction: column;
   cursor: pointer;
 }
+/*movil*/
+.menu li a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+.menu-icon div {
+  width: 25px;
+  height: 3px;
+  background-color: rgb(0, 0, 0);
+  margin: 4px;
+  margin-left: 500%;
+}
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
@@ -250,6 +264,12 @@ ul, ol{
   align-items: center;
 }
 
+.social-media img,
+.contact-us img,
+.find-us img {
+  display: block;
+} 
+
 footer {
   background-color: #333;
   color: #fff;
@@ -317,7 +337,7 @@ footer {
   opacity: 1;
   visibility: visible;
   }
-}
+} 
 li{
   font-family: serif;
 }
