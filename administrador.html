@@ -2,9 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-    <link rel="stylesheet" href="../../css/h.css">
+    <title>Panel de Administración - Logros</title>
+    <link rel="stylesheet" href="css/h.css">
     <link rel="icon" href="images/index/fondo1.ico">
 </head>
 <body>
@@ -72,28 +71,35 @@
             </div>
         </div>
     </div>
-
     <script type="module">
-        const ADMIN_PASSWORD = "avafchasetodie10"; // Cambiar esta contraseña si es que se quiere :b / pero no pasar a nadie
+        const ADMIN_PASSWORD = "ahasetodie10vafc"; // Cambiar esta contraseña si es que se quiere :b / pero no pasar a nadie
         
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, orderBy, query, Timestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+        import { getDatabase, ref, onValue, set, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, orderBy, query, Timestamp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
 
-        // Configuración de Firebase
+        
         const firebaseConfig = {
-            apiKey: "AIzaSyDJin7waw2GXpU3vIbMb8Otp3SwBAujdr4",
-            authDomain: "noticias-uef5j.firebaseapp.com",
-            projectId: "noticias-uef5j",
-            storageBucket: "noticias-uef5j.firebasestorage.app",
-            messagingSenderId: "840885475663",
-            appId: "1:840885475663:web:a47bca935ea8dfba668d3a"
+        apiKey: "AIzaSyCGMmEm-MkfZNzGFEwpNkCInpVuKRXi89E",
+        authDomain: "logros-institucionales.firebaseapp.com",
+        databaseURL: "https://logros-institucionales-default-rtdb.firebaseio.com/",
+        projectId: "logros-institucionales",
+        storageBucket: "logros-institucionales.firebasestorage.app",
+        messagingSenderId: "574983941695",
+        appId: "1:574983941695:web:ae9c6ade102051b7b6d28a",
+        measurementId: "G-F1YCZ67DJT"
         };
+        
 
-        // Inicializar Firebase
+       // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+        const analytics = getAnalytics(app);
+        const db = getDatabase(app); // Esta es para Realtime Database
+        const firestore = getFirestore(app); // AGREGA ESTA LÍNEA para Firestore
 
-        // Variables globales
+        // Referencia al nodo de la base de datos donde guardaremos el texto
+        const logroRef = ref(db, 'logro_actual');
         let editingId = null;
         const loginScreen = document.getElementById('login-screen');
         const adminPanel = document.getElementById('admin-panel');
@@ -191,7 +197,7 @@
             try {
                 const imageBase64 = await fileToBase64(imageFile);
                 
-                await addDoc(collection(db, 'noticias'), {
+                await addDoc(collection(firestore, 'noticias'), {
                     titulo: title,
                     contenido: content,
                     imagen: imageBase64,
@@ -222,7 +228,7 @@
                     updateData.imagen = imageBase64;
                 }
                 
-                await updateDoc(doc(db, 'noticias', id), updateData);
+                await updateDoc(doc(firestore, 'noticias', id), updateData);
                 loadNews();
                 showMessage('Noticia actualizada exitosamente!');
                 cancelEdit();
@@ -236,7 +242,7 @@
         async function deleteNews(id) {
             if (confirm('¿Estás seguro de que quieres eliminar esta noticia?')) {
                 try {
-                    await deleteDoc(doc(db, 'noticias', id));
+                    await deleteDoc(doc(firestore, 'noticias', id));
                     loadNews();
                     showMessage('Noticia eliminada exitosamente!');
                 } catch (error) {
@@ -252,7 +258,7 @@
             newsContainer.innerHTML = '';*/
 
             try {
-                const q = query(collection(db, 'noticias'), orderBy('fecha', 'desc'));
+                const q = query(collection(firestore, 'noticias'), orderBy('fecha', 'desc'));
                 const querySnapshot = await getDocs(q);
                 
                 if (querySnapshot.empty) {
@@ -316,8 +322,8 @@
 
             // Cargar y mostrar la imagen actual
             try {
-                const docRef = doc(db, 'noticias', id);
-                const docSnap = await getDocs(query(collection(db, 'noticias')));
+                const docRef = doc(firestore, 'noticias', id);
+                const docSnap = await getDocs(query(collection(firestore, 'noticias')));
                 
                 docSnap.forEach((document) => {
                     if (document.id === id) {
@@ -391,5 +397,6 @@
         // Recargar noticias cada 10 segundos para mantener actualizado
         setInterval(loadNews, 10000);
     </script>
+</script>
 </body>
 </html>

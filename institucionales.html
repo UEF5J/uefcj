@@ -2,9 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias</title>
-    <link rel="stylesheet" href="css/noticias.css">
+    <title>Unidad Educativa - Inicio</title>
+    <link rel="stylesheet" href="css/institucional.css">
     <link rel="icon" href="images/index/fondo1.ico">
 </head>
 <body>
@@ -45,32 +44,20 @@
               <div></div>
             </label>
           </div>
-        </div>
+        </div> 
         <form action="https://ww2.sgacloud.net/estudiantes/ue5j">
           <div class="hola"><input type="submit" class="login-button" value="Login"></div>
         </form> 
    </header>
-
-    <br>
+      <br>
     <div class="noticias">
-        <h1>Noticias Institucionales</h1>
-        <a href="eN.html"><input type="button" value="acesso" class="login-button-1"></a>
+    <h1> Logros institucionales</h1>
+    <a href="administrador.html"><input type="button" value="acesso" class="login-button-1"></a>
     </div>
     <br>
-    <center><div class="cronograma-externo-container">
-    <h2 class="tabla-titulo"> Cronograma de Actividades - junio 2026</h2>
-    <br>
-    <p class="tabla-subtitulo">La información mostrada a continuación se actualiza directamente desde el panel de adimistrador</p>
-    <br>
-    <div class="iframe-responsive-wrapper">
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSGxxUKdS5tzTnXmyTlmjHUzXjUHREZZinOwL-qvGogKd_GnsXo16spT2QKAyoRqw/pubhtml?widget=true&amp;headers=false" width="100%" height="100%"></iframe>
-    </div>
-    </div></center>
-  
-
     <div class="container">
         <div id="loading" class="loading">
-            Cargando noticias
+            Cargando logro
         </div>
 
         <div id="error" style="display: none;"></div>
@@ -138,26 +125,33 @@
       </div>
     </div>
 
-    <!-- Firebase SDK -->
     <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getFirestore, collection, getDocs, orderBy, query } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getFirestore, collection, getDocs, orderBy, query } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
 
-        // Configuración de Firebase
+
         const firebaseConfig = {
-            apiKey: "AIzaSyDJin7waw2GXpU3vIbMb8Otp3SwBAujdr4",
-            authDomain: "noticias-uef5j.firebaseapp.com",
-            projectId: "noticias-uef5j",
-            storageBucket: "noticias-uef5j.firebasestorage.app",
-            messagingSenderId: "840885475663",
-            appId: "1:840885475663:web:a47bca935ea8dfba668d3a"
+        apiKey: "AIzaSyCGMmEm-MkfZNzGFEwpNkCInpVuKRXi89E",
+        authDomain: "logros-institucionales.firebaseapp.com",
+        databaseURL: "https://logros-institucionales-default-rtdb.firebaseio.com/",
+        projectId: "logros-institucionales",
+        storageBucket: "logros-institucionales.firebasestorage.app",
+        messagingSenderId: "574983941695",
+        appId: "1:574983941695:web:ae9c6ade102051b7b6d28a",
+        measurementId: "G-F1YCZ67DJT"
         };
 
-        // Inicializar Firebase
+        // Inicializar Firebase}
+        
         const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+        const analytics = getAnalytics(app);
+        const db = getDatabase(app); // Esta es para Realtime Database
+        const firestore = getFirestore(app); // AGREGA ESTA LÍNEA para Firestore
 
-        // Variables
+        
+        const logroRef = ref(db, 'logro_actual');
         const newsContainer = document.getElementById('news-container');
         const loadingDiv = document.getElementById('loading');
         const errorDiv = document.getElementById('error');
@@ -171,11 +165,11 @@
         // Función para cargar noticias
         async function loadNews() {
             try {
-                const q = query(collection(db, 'noticias'), orderBy('fecha', 'desc'));
+                const q = query(collection(firestore, 'noticias'), orderBy('fecha', 'desc'));
                 const querySnapshot = await getDocs(q);
                 
                 if (querySnapshot.empty) {
-                    newsContainer.innerHTML = '<div class="no-news">No hay noticias disponibles en este momento.<br>Intenta recargando la página.</div>';
+                    newsContainer.innerHTML = '<div class="no-news">no hay logros en este momento.<br>Intenta recargando la página.</div>';
                 } else {
                     newsContainer.innerHTML = '';
                     querySnapshot.forEach((doc) => {
@@ -185,14 +179,14 @@
                     });
                 }
             } catch (error) {
-                console.error('Error al cargar noticias:', error);
-                showError('No se pudieron cargar las noticias. Intenta recargar la página.');
+                console.error('Error al cargar logros:', error);
+                showError('No se pudieron cargar los logros. Intenta recargar la página.');
             } finally {
                 loadingDiv.style.display = 'none';
             }
         }
 
-        // Función para crear tarjeta de noticia
+        // Función para crear tarjeta 
         function createNewsCard(news) {
             const card = document.createElement('div');
             card.className = 'news-card';
@@ -214,7 +208,7 @@
                 <br>
                 <h2 class="news-title">${news.titulo}</h2>
                 <p class="news-content">${news.contenido}</p>
-                ${news.imagen ? `<div class="news-image"><img src="${news.imagen}" alt="Imagen de la noticia" /></div>` : ''}
+                ${news.imagen ? `<div class="news-image"><img src="${news.imagen}" alt="Imagen del logro" /></div>` : ''}
             `;
 
             return card;
@@ -225,6 +219,6 @@
 
         // Recargar noticias cada 10 segundos para mantener actualizado
         setInterval(loadNews, 10000);
-    </script>
+</script>
 </body>
 </html>

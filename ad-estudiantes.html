@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Administración - Logros</title>
+    <link rel="stylesheet" href="css/h.css">
+    <link rel="icon" href="images/index/fondo1.ico">
+</head>
+<body>
+    <div class="container">
+        <div id="login-screen" class="login-screen">
+            <div class="login-box">
+                <h1>Acceso Restringido</h1>
+                <p>Panel de administrativo</p>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" required placeholder="Ingresa la contraseña">
+                    </div>
+                    <button type="submit" class="btn">Ingresar</button>
+                </form>
+                <div id="login-error"></div>
+            </div>
+        </div>
+
+        <div id="admin-panel" class="admin-panel">
+            <div class="header">
+                <h1>Panel de Administración</h1>
+                <button class="logout-btn" onclick="logout()">Cerrar Sesión</button>
+            </div>
+
+            <div class="form-container">
+                <h2 id="form-title">Agregar Nueva Noticia</h2>
+                <form id="news-form">
+                    <div class="form-group">
+                        <label for="title">Título de la noticia:</label>
+                        <input type="text" id="title" required placeholder="Ingresa un titulo">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Contenido:</label>
+                        <textarea id="content" required placeholder="Ingresa el contenido de la noticia"></textarea>
+                    </div>
+                    <div class="form-group2">
+                        <center>
+                        <label for="imageNotice" style="color: #555;">Imagen:</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="imageNotice" accept="image/*">
+                            <label for="imageNotice" class="file-input-label">
+                                Seleccionar imagen
+                            </label>
+                            <div class="image-info" id="image-info"></div>
+                        </div>
+                            <img id="image-preview" class="image-preview" style="display: none;" alt="Vista previa">
+                        </center>
+                    </div>
+                    <button type="submit" class="btn" id="submit-btn">Agregar Noticia</button>
+                    <br><br>
+                    <button type="button" class="btn btn-danger" id="cancel-btn" style="display: none;">Cancelar</button>
+                </form>
+            </div>
+
+            <!-- Mensajes -->
+            <div id="message"></div>
+
+            <!-- Loading -->
+            <div id="loading" class="loading" style="display: none;">Cargando noticias...</div>
+
+            <!-- Contenedor de noticias -->
+            <div class="news-container" id="news-container">
+                <!-- Las noticias de la base de datos se cargarán aquí -->
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        const ADMIN_PASSWORD = "ahasetodie10vafc"; // Cambiar esta contraseña si es que se quiere :b / pero no pasar a nadie
+        
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, onValue, set, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, orderBy, query, Timestamp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+
+
+        const firebaseConfig = {
+        apiKey: "AIzaSyBnIVbGwHqW0KW1PCcBm5vzHG2GNux5zfQ",
+        authDomain: "estudiantes-7db39.firebaseapp.com",
+        databaseURL: "https://estudiantes-7db39-default-rtdb.firebaseio.com",
+        projectId: "estudiantes-7db39",
+        storageBucket: "estudiantes-7db39.firebasestorage.app",
+        messagingSenderId: "357055676040",
+        appId: "1:357055676040:web:24743bb5dcc2521113a93d"
+        }        
+
+       // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app); // Esta es para Realtime Database
+        const firestore = getFirestore(app); // AGREGA ESTA LÍNEA para Firestore
+
+        // Referencia al nodo de la base de datos donde guardaremos el texto
+         const logroRef = ref(db, 'logro_actual');
+         let editingId = null;
+        const loginScreen = document.getElementById('login-screen');
+        const adminPanel = document.getElementById('admin-panel');
+        const loginForm = document.getElementById('login-form');
+        const loginError = document.getElementById('login-error');
+        const newsForm = document.getElementById('news-form');
+        const titleInput = document.getElementById('title');
+        const contentInput = document.getElementById('content');
+        const imageInput = document.getElementById('imageNotice');
+        const imagePreview = document.getElementById('image-preview');
+        const imageInfo = document.getElementById('image-info');
+        const newsContainer = document.getElementById('news-container');
+        const loadingDiv = document.getElementById('loading');
+        const messageDiv = document.getElementById('message');
+        const formTitle = document.getElementById('form-title');
+        const submitBtn = document.getElementById('submit-btn');
+        const cancelBtn = document.getElementById('cancel-btn');
+
+        // Verificar si ya está logueado
+        if (sessionStorage.getItem('admin_logged_in') === 'true') {
+            showAdminPanel();
+        }
+
+        // Event listener para previsualizar imagen
+        imageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                // Mostrar información del archivo
+                imageInfo.textContent = `${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+                
+                // Crear vista previa
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imageInfo.textContent = '';
+                imagePreview.style.display = 'none';
+            }
+        });
+
+        // Login form
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const password = document.getElementById('password').value;
+            
+            if (password === ADMIN_PASSWORD) {
+                sessionStorage.setItem('admin_logged_in', 'true');
+                showAdminPanel();
+            } else {
+                loginError.innerHTML = '<div class="error-login">Contraseña incorrecta</div>';
+                setTimeout(() => {
+                    loginError.innerHTML = '';
+                }, 3000);
+            }
+        });
+
+        // Mostrar panel de administración
+        function showAdminPanel() {
+            loginScreen.style.display = 'none';
+            adminPanel.style.display = 'block';
+            loadNews();
+        }
+
+        // Logout
+        window.logout = function() {
+            sessionStorage.removeItem('admin_logged_in');
+            loginScreen.style.display = 'flex';
+            adminPanel.style.display = 'none';
+            document.getElementById('password').value = '';
+        };
+
+        // Función para mostrar mensajes
+        function showMessage(text, type = 'success') {
+            messageDiv.innerHTML = `<div class="${type}">${text}</div>`;
+            setTimeout(() => {
+                messageDiv.innerHTML = '';
+            }, 3000);
+        }
+
+        // Función para convertir archivo a base64
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        // Función para agregar noticia
+        async function addNews(title, content, imageFile) {
+            try {
+                const imageBase64 = await fileToBase64(imageFile);
+                
+                await addDoc(collection(firestore, 'noticias'), {
+                    titulo: title,
+                    contenido: content,
+                    imagen: imageBase64,
+                    fecha: Timestamp.now()
+                });
+                loadNews();
+                showMessage('Noticia agregada exitosamente!');
+                newsForm.reset();
+                imagePreview.style.display = 'none';
+                imageInfo.textContent = '';
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('Error al agregar la noticia', 'error');
+            }
+        }
+
+        // Función para actualizar noticia
+        async function updateNews(id, title, content, imageFile) {
+            try {
+                let updateData = {
+                    titulo: title,
+                    contenido: content,
+                };
+
+                // Solo actualiza la imagen si se seleccionó una nueva
+                if (imageFile) {
+                    const imageBase64 = await fileToBase64(imageFile);
+                    updateData.imagen = imageBase64;
+                }
+                
+                await updateDoc(doc(firestore, 'noticias', id), updateData);
+                loadNews();
+                showMessage('Noticia actualizada exitosamente!');
+                cancelEdit();
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('Error al actualizar la noticia', 'error');
+            }
+        }
+
+        // Función para eliminar noticia
+        async function deleteNews(id) {
+            if (confirm('¿Estás seguro de que quieres eliminar esta noticia?')) {
+                try {
+                    await deleteDoc(doc(firestore, 'noticias', id));
+                    loadNews();
+                    showMessage('Noticia eliminada exitosamente!');
+                } catch (error) {
+                    console.error('Error:', error);
+                    showMessage('Error al eliminar la noticia', 'error');
+                }
+            }
+        }
+
+        // Función para cargar noticias
+        async function loadNews() {
+/*            loadingDiv.style.display = 'block';
+            newsContainer.innerHTML = '';*/
+
+            try {
+                const q = query(collection(firestore, 'noticias'), orderBy('fecha', 'desc'));
+                const querySnapshot = await getDocs(q);
+                
+                if (querySnapshot.empty) {
+                    newsContainer.innerHTML = '<div style="text-align: center; color: white; font-size: 1.2rem; grid-column: 1/-1;">No hay noticias todavía. ¡Agrega la primera!</div>';
+                } else {
+                    newsContainer.innerHTML = '';
+                    querySnapshot.forEach((doc) => {
+                        const news = doc.data();
+                        const newsCard = createNewsCard(doc.id, news);
+                        newsContainer.appendChild(newsCard);
+                    });
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('Error al cargar las noticias', 'error');
+            } finally {
+                loadingDiv.style.display = 'none';
+            }
+        }
+
+        // Función para crear tarjeta de noticia
+        function createNewsCard(id, news) {
+            const card = document.createElement('div');
+            card.className = 'news-card';
+            
+            const date = news.fecha.toDate().toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            // Limpiar el título y contenido para evitar problemas con comillas
+            const cleanTitle = news.titulo.replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+            const cleanContent = news.contenido.replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+
+            card.innerHTML = `
+                <h3 class="news-title">${news.titulo}</h3>
+                <p class="news-date">${date}</p>
+                <p class="news-content">${news.contenido}</p>
+                ${news.imagen ? `<div class="news-image"><img src="${news.imagen}" alt="Imagen de la noticia" /></div>` : ''}
+                <div>
+                    <button class="btn btn-edit" onclick="editNews('${id}', '${cleanTitle}', '${cleanContent}')">Editar</button>
+                    <button class="btn btn-danger" onclick="deleteNews('${id}')">Eliminar</button>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Función para editar noticia
+        async function editNews(id, title, content) {
+            editingId = id;
+            // Decodificar las entidades HTML
+            titleInput.value = title.replace(/&#39;/g, "'").replace(/&quot;/g, '"');
+            contentInput.value = content.replace(/&#39;/g, "'").replace(/&quot;/g, '"');
+            
+            // Hacer el campo de imagen opcional en modo edición
+            imageInput.removeAttribute('required');
+
+            // Cargar y mostrar la imagen actual
+            try {
+                const docRef = doc(firestore, 'noticias', id);
+                const docSnap = await getDocs(query(collection(firestore, 'noticias')));
+                
+                docSnap.forEach((document) => {
+                    if (document.id === id) {
+                        const newsData = document.data();
+                        if (newsData.imagen) {
+                            imagePreview.src = newsData.imagen;
+                            imagePreview.style.display = 'block';
+                            imageInfo.textContent = 'Imagen actual (selecciona una nueva para cambiar)';
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error cargando imagen:', error);
+            }
+            
+            formTitle.textContent = 'Editar Noticia';
+            submitBtn.textContent = 'Actualizar Noticia';
+            cancelBtn.style.display = 'inline-block';
+            document.querySelector('.form-container').classList.add('edit-mode');
+            document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Función para cancelar edición
+        function cancelEdit() {
+            editingId = null;
+            newsForm.reset();
+            imagePreview.style.display = 'none';
+            imageInfo.textContent = '';
+            imageInput.setAttribute('required', '');
+            formTitle.textContent = 'Agregar Nueva Noticia';
+            submitBtn.textContent = 'Agregar Noticia';
+            cancelBtn.style.display = 'none';
+            document.querySelector('.form-container').classList.remove('edit-mode');
+        }
+
+        // Event listeners
+        newsForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const title = titleInput.value.trim();
+            const content = contentInput.value.trim();
+            const imageFile = imageInput.files[0];
+
+            if (!title || !content) {
+                showMessage('Por favor completa todos los campos obligatorios', 'error');
+                return;
+            }
+
+            // Validar imagen solo si no estamos editando o si se seleccionó una nueva imagen
+            if (!editingId && !imageFile) {
+                showMessage('Por favor selecciona una imagen', 'error');
+                return;
+            }
+
+            if (editingId) {
+                await updateNews(editingId, title, content, imageFile);
+            } else {
+                await addNews(title, content, imageFile);
+            }
+        });
+
+        cancelBtn.addEventListener('click', cancelEdit);
+
+        // Hacer funciones globales
+        window.editNews = editNews;
+        window.deleteNews = deleteNews;
+
+        // Cargar noticias al iniciar
+        loadNews();
+
+        // Recargar noticias cada 10 segundos para mantener actualizado
+        setInterval(loadNews, 10000);
+    </script>
+</script>
+</body>
+</html>
