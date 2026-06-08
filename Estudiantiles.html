@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>Unidad Educativa - Inicio</title>
     <link rel="stylesheet" href="css/estudiantes.css">
-    <link rel="stylesheet" href="css/bandas.css">
+    <link rel="stylesheet" href="css/e.css">
     <link rel="icon" href="images/index/fondo1.ico">
+    <script src="javascript/animaciones.js"></script>
 </head>
 <body>
   <header>
@@ -57,23 +58,8 @@
       <br>
       <div class="players"> 
         <div class="presentacion">
-          <img src="images/banda/gale1.jpg" alt="Imagen 1" class="presentacion-img" onclick="abrirModal(this)">
-        </div>  
-        <div class="presentacion">
-          <img src="images/banda/gale2.jpg" alt="Imagen 2" class="presentacion-img" onclick="abrirModal(this)">
-        </div>  
-        <div class="presentacion">
-          <img src="images/banda/gale3.jpg" alt="Imagen 3" class="presentacion-img" onclick="abrirModal(this)">
+          <img src="images/estudiantil/consejo.jpeg" alt="Imagen 1" class="presentacion-img" onclick="abrirModal(this)">
         </div>
-        <div class="presentacion">
-          <img src="images/banda/b5.jpg" alt="Imagen 4" class="presentacion-img" onclick="abrirModal(this)">
-        </div>  
-        <div class="presentacion">
-          <img src="images/banda/b6.jpg" alt="Imagen 5" class="presentacion-img" onclick="abrirModal(this)">
-        </div>  
-        <div class="presentacion">
-          <img src="images/banda/gale6.jpg" alt="Imagen 6" class="presentacion-img" onclick="abrirModal(this)">
-        </div> 
       </div>
       </div>
   <br>
@@ -122,6 +108,11 @@
             <!-- Aqui se agregan las Noticias que vienen de la base de datos-->
         </div>
     </div>
+    
+  <div id="miModal" class="modal" onclick="cerrarModal()">
+    <span class="cerrar">&times;</span>
+    <img class="modal-contenido" id="imgGrande">
+</div>
 
     <br><br><br>
 
