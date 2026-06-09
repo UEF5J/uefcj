@@ -16,7 +16,7 @@ header {
   display: flex;
   align-items: center;
   background: linear-gradient(to bottom, #012295 0%, #012295 33.33%, #FFFFFF 40.40%, #FFFFFF 66.66%, #e82939 75.75%, #e82939 100%);  
-}
+} 
 .logo img {
   width: 155px;
   margin-left: 40px;
