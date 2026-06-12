@@ -491,7 +491,7 @@ footer {
   display: block;
 } 
 .players {
-          display: flex;
+    display: flex;
     justify-content: center; /* Centra los cuadros en la pantalla */
     gap: 25px;              /* Espacio de separación entre cada cuadro */
     flex-wrap: wrap;        /* Si la pantalla es pequeña (celular), los cuadros se acomodan abajo automáticamente */
@@ -559,7 +559,7 @@ background: rgba(255, 255, 255, 0.5); /* Blanco muy difuminado */
 .text {
   margin-left: 30px;
   margin-right: 30px;
-  color: #000000;
+  color: #000000; 
   font-family: sans-serif;
   font-size: 20px;
 }
