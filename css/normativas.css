@@ -129,7 +129,7 @@ body {
   .nav li ul{
     display: none;
     position: absolute;
-    min-width: 140px;
+    min-width: 100px;
   }
   
   .nav li:hover > ul{
@@ -145,8 +145,8 @@ body {
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
-    margin-top: 15%;
-    margin-left: 35%;
+    margin-top: 7%;
+    margin-left: 12%;
     }
 
   @media screen and (max-width: 768px) {
@@ -178,13 +178,12 @@ h1 {
 }
 
 .presentacion-img {
-  
   width: 400px;
-  height: 330px;
+  height: 400px;
   object-fit: cover;
   border-radius: 15px;
-  cursor: zoom-in;
-  transition: transform 0.2s;
+    cursor: zoom-in;
+    transition: transform 0.2s;
 }
 
 .container{
@@ -196,11 +195,12 @@ h1 {
   backdrop-filter: blur(10px); /* Desenfoque estilo vidrio moderno */
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;          /* Esquinas redondeadas modernas */
-  width: 350px;                 /* Ancho fijo para que todos midan igual */
+  width: 400px;                 /* Ancho fijo para que todos midan igual */
   overflow: hidden;             /* Corta la imagen para que respete las esquinas redondeadas */
   text-align: center;           /* Centra el texto de abajo */
   /* Sombra suave para dar profundidad (efecto flotante) */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); 
+  height: 400px;
 }
 
 .icon-equis{
