@@ -72,7 +72,9 @@ ul, ol{
 /* Estilos responsivos */
 @media (max-width: 768px) {
   header{
-    margin-bottom: -23%;
+    flex-direction: column; /* Apila logo, menú y botón verticalmente */
+    align-items: center;    /* Centra los elementos */
+    padding: 10px 0;
   }
 
   .menu {
