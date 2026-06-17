@@ -525,3 +525,14 @@ footer {
     height: 100%;
     border: none;
 }
+@media screen and (max-width: 768px) {
+  .cronograma-externo-container {
+    max-width: 95%; /* Ajuste para que encaje mejor en pantallas estrechas */
+    padding: 10px;
+  }
+
+  .iframe-responsive-wrapper {
+    height: 500px; /* Aumentamos la altura en móviles para que se vea el contenido */
+    overflow: auto; /* Permite desplazamiento si el contenido es muy largo */
+  }
+}
