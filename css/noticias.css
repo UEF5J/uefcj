@@ -84,9 +84,9 @@ ul, ol{
 /* Estilos responsivos */
 @media (max-width: 768px) {
   header{
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 10px;
+    flex-direction: column; /* Apila logo, menú y botón verticalmente */
+    align-items: center;    /* Centra los elementos */
+    padding: 10px 0;
   }
 
   .menu {
@@ -191,7 +191,7 @@ ul, ol{
     margin-left: 0;
     margin-top: 10px;
     margin-bottom: 10px;
-    }
+  }
 }
 
 .login-button:hover {
@@ -507,7 +507,7 @@ footer {
     border-top: 5px solid #2b4c7e;
 }
 
-.iframe-responsive-wrapper {
+.iframe-responsive-wrapper{
      position: relative;
     width: 100%;
     height: 280px; 
