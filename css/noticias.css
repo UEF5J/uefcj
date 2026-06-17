@@ -84,7 +84,9 @@ ul, ol{
 /* Estilos responsivos */
 @media (max-width: 768px) {
   header{
-    margin-bottom: 0%;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
   }
 
   .menu {
@@ -185,9 +187,11 @@ ul, ol{
 
 
 @media screen and (max-width: 768px) {
-  .login-button {
-    margin-left: -15%;
-    }
+  .hola .login-button {
+    margin-left: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+ }
 }
 
 .login-button:hover {
@@ -396,7 +400,6 @@ ul, ol{
 /*  background: rgba(0, 0, 0, 0.5);*/
   width: 100%;
   height: 100vh;
-  margin-top: 20%;
   top: 0;
   left: 0;
   transition: all 500ms ease;
