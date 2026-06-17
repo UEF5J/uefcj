@@ -242,6 +242,8 @@ right: 0;
 
   .image-text-container{
     flex-direction: column;
+    width: 350px;
+    height: 310px;
   }
 
   .animated-image{
@@ -257,7 +259,7 @@ right: 0;
     grid-template-columns: repeat(1, 6fr);
   }
   .presentacion-img {
-  width: 400px;
+  width: 350px;
   height: 300px;
   object-fit: cover;
   border-radius: 15px;
