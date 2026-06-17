@@ -177,12 +177,12 @@ ul, ol{
   margin: 0%;
 }
 .noticias{
-  display: flex;             /* Activa el diseño flexible */
-  justify-content: center;   /* Centra el conjunto en la pantalla */
-  align-items: center;       /* Alinea verticalmente el título y el botón */
-  gap: 10px;                 /* Deja un espacio de 20px entre el título y el botón */
-  margin-top: 20px;          /* Reemplaza el uso de <br> para dar espacio arriba */
-  margin-bottom: 20px;       /* Reemplaza el uso de <br> para dar espacio abajo */
+  display: flex;       
+  justify-content: center;   
+  align-items: center;     
+  gap: 10px;         
+  margin-top: 20px;  
+  margin-bottom: 20px; 
 }
 
 
@@ -495,7 +495,7 @@ footer {
 .find-us img {
   display: block;
 } 
-/* Contenedor principal de la tabla externa */
+
 .cronograma-externo-container {
     background: #ffffff;
     border-radius: 15px;
@@ -508,7 +508,7 @@ footer {
 }
 
 .iframe-responsive-wrapper{
-     position: relative;
+    position: relative;
     width: 100%;
     height: 280px; 
     overflow: hidden;
@@ -516,7 +516,6 @@ footer {
     border: 1px solid #e0e0e0;
 }
 
-/* Estilo estricto para el elemento iframe generado por Google */
 .iframe-responsive-wrapper iframe {
     position: absolute;
     top: 0;
@@ -524,15 +523,4 @@ footer {
     width: 100%;
     height: 100%;
     border: none;
-}
-@media screen and (max-width: 768px) {
-  .cronograma-externo-container {
-    max-width: 95%; /* Ajuste para que encaje mejor en pantallas estrechas */
-    padding: 10px;
-  }
-
-  .iframe-responsive-wrapper {
-    height: 500px; /* Aumentamos la altura en móviles para que se vea el contenido */
-    overflow: auto; /* Permite desplazamiento si el contenido es muy largo */
-  }
 }

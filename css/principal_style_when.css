@@ -149,9 +149,11 @@ ul, ol{
   }
 
 @media screen and (max-width: 768px) {
-  .login-button {
-    margin-left: -15%;
-    }
+  .hola .login-button {
+    margin-left: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
 
 .login-button:hover {
