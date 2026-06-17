@@ -163,7 +163,7 @@ h1 {
  max-width: 1000px;
  margin: 0 auto;
  border-radius: 10px;
- color: rgb(14, 13, 13); 
+ color: rgb(243, 235, 235); 
  font-family: serif;
  text-transform: uppercase;
  letter-spacing: 1px;
@@ -171,36 +171,33 @@ h1 {
 }
 .players {
     display: flex;
-    justify-content: center; /* Centra los cuadros en la pantalla */
-    gap: 25px;              /* Espacio de separación entre cada cuadro */
-    flex-wrap: wrap;        /* Si la pantalla es pequeña (celular), los cuadros se acomodan abajo automáticamente */
+    justify-content: center; 
+    gap: 25px;              
+    flex-wrap: wrap;        
     padding: 15px;
 }
 
 .presentacion-img {
-  width: 400px;
+  width: 800px;
   height: 400px;
   object-fit: cover;
   border-radius: 15px;
-    cursor: zoom-in;
-    transition: transform 0.2s;
 }
 
 .container{
   max-width: 1200px;
   margin: 0 auto;
 }
-.image-text-container {  
-  background: rgba(255, 255, 255, 0.5); /* Blanco muy difuminado */
-  backdrop-filter: blur(10px); /* Desenfoque estilo vidrio moderno */
+.image-text-container {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px); 
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;          /* Esquinas redondeadas modernas */
-  width: 400px;                 /* Ancho fijo para que todos midan igual */
-  overflow: hidden;             /* Corta la imagen para que respete las esquinas redondeadas */
-  text-align: center;           /* Centra el texto de abajo */
-  /* Sombra suave para dar profundidad (efecto flotante) */
+  border-radius: 12px;         
+  width: 800px;                
+  overflow: hidden;             
+  text-align: center;           
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); 
-  height: 400px;
+  height: 410px;
 }
 
 .icon-equis{
@@ -308,66 +305,6 @@ right: 0;
 li{
     font-family: serif;
   }
-  
-  .modal {
-    display: none; /* Oculto por defecto */
-    position: fixed; /* Se queda fijo en la pantalla */
-    z-index: 1000; /* Se posiciona por encima de todo */
-    padding-top: 50px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.85); /* Fondo negro semitransparente */
-    backdrop-filter: blur(5px); /* Suave desenfoque al fondo */
-    cursor: zoom-out;
-}
-
-/* Contenedor de la imagen ampliada */
-.modal-contenido {
-    margin: auto;
-    display: block;
-    max-width: 100%;
-    max-height: 200%;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    
-    /* Animación de entrada suave */
-    animation-name: zoom;
-    animation-duration: 0.3s;
-}
-
-@keyframes zoom {
-    from { transform: scale(0.7); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-/* Botón de cerrar (X) */
-.cerrar {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
- 
-.cerrar:hover {
-    color: #ff4d4d;
-}
-
-/* Cambiar el cursor al pasar sobre las imágenes de la galería para indicar que son clickeables */
-.presentacion-img {
-    cursor: zoom-in;
-    transition: transform 0.2s;
-}
-
-.presentacion-img:hover {
-    transform: scale(1.03); /* Efecto visual sutil al pasar el mouse */
-}
 
 /*movil*/
 

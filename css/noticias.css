@@ -32,7 +32,7 @@ header {
 .logo img {
   width: 155px;
   margin-left: 40px;
-}
+} 
 
 @media screen and (max-width: 768px) {
   .logo img{
@@ -186,7 +186,7 @@ ul, ol{
 
 @media screen and (max-width: 768px) {
   .login-button {
-    margin-left: -15%;
+    margin-left: -5%;
     }
 }
 
