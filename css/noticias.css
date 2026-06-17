@@ -84,7 +84,9 @@ ul, ol{
 /* Estilos responsivos */
 @media (max-width: 768px) {
   header{
-    margin-bottom: 0%;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
   }
 
   .menu {
@@ -185,8 +187,10 @@ ul, ol{
 
 
 @media screen and (max-width: 768px) {
-  .login-button {
-    margin-left: -15%;
+  .hola .login-button {
+    margin-left: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
     }
 }
 
@@ -520,4 +524,16 @@ footer {
     width: 100%;
     height: 100%;
     border: none;
+}
+@media screen and (max-width: 768px) {
+  /* Ajusta el ancho para que ocupe casi toda la pantalla del móvil */
+  .cronograma-externo-container {
+    max-width: 95%; 
+    padding: 15px;
+  }
+
+  /* Aumenta la altura para que el contenido dentro del iframe sea legible */
+  .iframe-responsive-wrapper {
+    height: 400px; 
+  }
 }
