@@ -256,6 +256,12 @@ right: 0;
   .players{
     grid-template-columns: repeat(1, 6fr);
   }
+  .presentacion-img {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+  }
 }
 
   @media screen and (max-width: 768px) {
