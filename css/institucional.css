@@ -84,8 +84,8 @@ ul, ol{
 /* Estilos responsivos */
 @media (max-width: 768px) {
   header{
-    flex-direction: column; /* Apila logo, menú y botón verticalmente */
-    align-items: center;    /* Centra los elementos */
+    flex-direction: column;
+    align-items: center;    
     padding: 10px 0;
   }
 
@@ -169,7 +169,7 @@ ul, ol{
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
   background-color: #c2c5cf;
-  backdrop-filter: blur(10px); /* Desenfoque estilo vidrio moderno */
+  backdrop-filter: blur(10px); 
   border: 1px solid rgba(255, 255, 255, 0.2);
 
   }
@@ -177,12 +177,12 @@ ul, ol{
   margin: 0%;
 }
 .noticias{
-  display: flex;             /* Activa el diseño flexible */
-  justify-content: center;   /* Centra el conjunto en la pantalla */
-  align-items: center;       /* Alinea verticalmente el título y el botón */
-  gap: 10px;                 /* Deja un espacio de 20px entre el título y el botón */
-  margin-top: 20px;          /* Reemplaza el uso de <br> para dar espacio arriba */
-  margin-bottom: 20px;       /* Reemplaza el uso de <br> para dar espacio abajo */
+  display: flex;            
+  justify-content: center;   
+  align-items: center;       
+  gap: 10px;                
+  margin-top: 20px;         
+  margin-bottom: 20px;      
 }
 
 

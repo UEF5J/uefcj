@@ -75,8 +75,8 @@ body {
   /* Estilos responsivos */
   @media (max-width: 768px) {
     header{
-    flex-direction: column; /* Apila logo, menú y botón verticalmente */
-    align-items: center;    /* Centra los elementos */
+    flex-direction: column;
+    align-items: center;    
     padding: 10px 0;
     }
 
@@ -172,29 +172,26 @@ h1 {
  text-transform: uppercase;
  letter-spacing: 1px;
  background-color: #717ea859;
- backdrop-filter: blur(10px); /* Desenfoque estilo vidrio moderno */
+ backdrop-filter: blur(10px);
  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .players {
-          display: flex;
-    justify-content: center; /* Centra los cuadros en la pantalla */
-    gap: 25px;              /* Espacio de separación entre cada cuadro */
-    flex-wrap: wrap;        /* Si la pantalla es pequeña (celular), los cuadros se acomodan abajo automáticamente */
-    padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;             
+  flex-wrap: wrap;        
+  padding: 20px;
 }
 
 .presentacion{
-   
-  background: rgba(255, 255, 255, 0.5); /* Blanco muy difuminado */
-    backdrop-filter: blur(10px); /* Desenfoque estilo vidrio moderno */
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px); 
   border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;          /* Esquinas redondeadas modernas */
-    width: 280px;                 /* Ancho fijo para que todos midan igual */
-    overflow: hidden;             /* Corta la imagen para que respete las esquinas redondeadas */
-    text-align: center;           /* Centra el texto de abajo */
-    
-    /* Sombra suave para dar profundidad (efecto flotante) */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); 
+  border-radius: 12px;      
+  width: 280px;         
+  overflow: hidden;            
+  text-align: center;     
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); 
 }
 
 .player-img {
@@ -212,11 +209,11 @@ h1 {
 }
 
 .player-name {
-   font-family: 'Open Sans', 'Arial', sans-serif; /* Tipografía limpia y seria */
+   font-family: 'Open Sans', 'Arial', sans-serif;
     font-size: 16px;
     font-weight: 600;
-    color: #1a2530;               /* Azul marino oscuro para un look formal */
-    padding: 15px 10px;           /* Espaciado interno para que el texto respire */
+    color: #1a2530;           
+    padding: 15px 10px;         
     margin: 0;
 }
 .container{
@@ -229,7 +226,7 @@ h1 {
   margin-bottom: 0px;
   padding: 7px 7px;
   background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px); /* Desenfoque estilo vidrio moderno */
+  backdrop-filter: blur(10px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   border-radius: 20px;
 }

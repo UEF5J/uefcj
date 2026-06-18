@@ -152,7 +152,7 @@ h1 {
   margin-bottom: 0px;
   padding: 7px 7px;
   background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px); /* Desenfoque estilo vidrio moderno */
+  backdrop-filter: blur(10px); 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   border-radius: 20px;
 }
@@ -181,8 +181,8 @@ h1 {
   /* Estilos responsivos */
   @media (max-width: 768px) {
     header{
-    flex-direction: column; /* Apila logo, menú y botón verticalmente */
-    align-items: center;    /* Centra los elementos */
+    flex-direction: column; 
+    align-items: center;    
     padding: 10px 0;
     }
 
